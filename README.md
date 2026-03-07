@@ -4,7 +4,7 @@
 
 ## Table of Contents
 
-- [Background and Objectives](#background-and-objectives)
+- [Project Background and Objectives](#project-background-and-objectives)
 - [Dataset](#dataset)
 - [Repository Structure](#repository-structure)
 - [Machine Learning Workflow](#machine-learning-workflow)
