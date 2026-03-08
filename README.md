@@ -39,8 +39,6 @@ Dataset characteristics:
 ---
 ## Machine Learning Workflow
 
-## Machine Learning Workflow
-
 The machine learning pipeline implemented in this project consists of the following steps:
 
 1. **Data Loading**  
@@ -69,7 +67,28 @@ The machine learning pipeline implemented in this project consists of the follow
    
 ---
 ## Software and Libraries
+
+The following Python libraries were used for data analysis, visualization, and machine learning:
+
+- **NumPy** – numerical computing
+- **Pandas** – data manipulation and tabular data processing
+- **Matplotlib** – data visualization
+- **Seaborn** – statistical data visualization
+- **Scikit-learn** – machine learning algorithms and model evaluation
+
 ---
 ## Model Performance Summary
+
+The predictive performance of the classifiers was evaluated on an independent test set using standard classification metrics.
+
+| Model | Accuracy | Precision | Recall | F1-score |
+|------|------|------|------|------|
+| Logistic Regression | 0.977 | 0.984 | 0.953 | 0.968 |
+| SVM (RBF kernel) | 0.982 | 0.984 | 0.969 | 0.976 |
+
+Logistic Regression was selected as a **baseline linear classifier**, providing interpretable probabilistic predictions. The Support Vector Machine with **RBF kernel** was included as a more flexible model capable of capturing **non-linear relationships among predictors**.
+
+Both models achieved very high predictive performance, with **ROC-AUC values close to 1**, indicating excellent separability between benign and malignant samples. The SVM model slightly improved recall for the malignant class, reducing the number of false negatives.
+
 ---
 ## References
