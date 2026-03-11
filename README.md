@@ -38,7 +38,7 @@ Dataset characteristics:
 ## Repository Structure
 
 The repository is organized to keep data, code, results, and documentation clearly separated, ensuring reproducibility and readability of the project.
-
+```
 ├── data/  
 │   ├── raw/  
 │   └── processed/  
@@ -48,6 +48,7 @@ The repository is organized to keep data, code, results, and documentation clear
 ├── scripts/  
 ├── LICENSE  
 └── README.md
+```
 
 ### `data/`
 Contains the datasets used in the project.
