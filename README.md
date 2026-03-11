@@ -55,25 +55,25 @@ Contains the datasets used in the project.
 - **raw/**: original dataset.  
 - **processed/**: cleaned and preprocessed data used for model training and evaluation.
 
-### notebooks/
+### `notebooks/`
 Jupyter notebooks containing the full machine learning workflow, including exploratory analysis, preprocessing, model training, and evaluation.
 
-### plots/
+### `plots/`
 This directory contains all plots generated during the analysis.  
 It includes plots used for exploratory data analysis (such as feature distributions, boxplots, and correlation matrices) as well as plots used for model evaluation and comparison, including confusion matrices, ROC curves, and precision–recall curves.
 
-### results/
+### `results/`
 Tables containing the evaluation metrics of the trained models.  
 This folder includes the performance results for Logistic Regression and SVM, as well as a comparison table summarizing the metrics of both models.
 
-### scripts/
+### `scripts/`
 This folder contains utility scripts used in the project.  
 In particular, it includes `saving.py`, which provides helper functions used in the notebooks to save plots, results, and other outputs generated during the analysis.
 
-### LICENSE
+### `LICENSE`
 License file specifying how the contents of the repository can be used.
 
-### README.md
+### `README.md`
 Main documentation file describing the project and its structure.
 
 ---
