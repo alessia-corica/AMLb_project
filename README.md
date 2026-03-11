@@ -49,7 +49,7 @@ The repository is organized to keep data, code, results, and documentation clear
 ├── LICENSE  
 └── README.md
 
-### data/
+### `data/`
 Contains the datasets used in the project.
 
 - **raw/**: original dataset.  
