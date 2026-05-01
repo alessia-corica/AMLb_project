@@ -10,14 +10,14 @@
 - [Machine Learning Workflow](#machine-learning-workflow)
 - [Software and Libraries](#software-and-libraries)
 - [Model Performance Summary](#model-performance-summary)
-- [References](#references)
 
 ---
 
 ## Project background and Objectives
-This project implements a supervised machine learning pipeline to classify breast tumors as **benign** or **malignant** using the **Breast Cancer Wisconsin Diagnostic Dataset**. The objective is to evaluate the performance of two widely used classifiers, **Logistic Regression** and **Support Vector Machine (SVM)**, within a structured workflow including preprocessing, model training, and performance evaluation.
 
-The project also addresses several practical challenges commonly encountered in biomedical classification tasks, such as **class imbalance** and **correlations among predictors**, that can influence the reliability and interpretability of model predictions.
+This project looks at how supervised machine learning can be used to classify breast tumors as benign or malignant using the **Breast Cancer Wisconsin Diagnostic dataset**.
+
+The goal is to compare different classification models, in particular **Logistic Regression, Support Vector Machine (SVM), Linear Discriminant Analysis (LDA), and K-Nearest Neighbors (KNN)**, within the same workflow. This allows to understand how their predictions differ and how these differences may affect their reliability, especially in a medical setting.
 
 ---
 ## Dataset
@@ -54,22 +54,21 @@ The repository is organized to keep data, code, results, and documentation clear
 Contains the datasets used in the project.
 
 - **raw/**: original dataset.  
-- **processed/**: cleaned and preprocessed data used for model training and evaluation.
+- **processed/**: preprocessed dataset split into input features and target labels, further divided into training and test sets used for model training and evaluation.
 
-### `notebooks/`
-Jupyter notebooks containing the full machine learning workflow, including exploratory analysis, preprocessing, model training, and evaluation.
+### `notebook/`
+Jupyter notebook containing the full machine learning workflow, including exploratory analysis (EDA), preprocessing, model training, and evaluation.
 
 ### `plots/`
 This directory contains all plots generated during the analysis.  
-It includes plots used for exploratory data analysis (such as feature distributions, boxplots, and correlation matrices) as well as plots used for model evaluation and comparison, including confusion matrices, ROC curves, and precision–recall curves.
+It includes plots used for EDA (such as feature distributions, boxplots, and correlation matrix) as well as plots used for model evaluation and comparison, including confusion matrices, ROC curves, and precision–recall curves.
 
 ### `results/`
-Tables containing the evaluation metrics of the trained models.  
-This folder includes the performance results for Logistic Regression and SVM, as well as a comparison table summarizing the metrics of both models.
+Table containing the evaluation metrics of the trained models, including Accuracy, Precision, Recall, F1 score, ROC-AUC, and Average Precision on the test set.
 
 ### `scripts/`
 This folder contains utility scripts used in the project.  
-In particular, it includes `saving.py`, which provides helper functions used in the notebooks to save plots, results, and other outputs generated during the analysis.
+In particular, it includes `saving.py`, which provides helper functions used in the notebook to save plots, results, and other outputs generated during the analysis.
 
 ### `LICENSE`
 License file specifying how the contents of the repository can be used.
@@ -83,28 +82,26 @@ Main documentation file describing the project and its structure.
 The machine learning pipeline implemented in this project consists of the following steps:
 
 1. **Data Loading**  
-   Import the Breast Cancer Wisconsin Diagnostic Dataset into the project environment.
+   Import the Breast Cancer Wisconsin Diagnostic Dataset directly from the UCI Machine Learning Repository.
 
 2. **Exploratory Data Analysis (EDA)**  
-   Inspect class distribution, visualize feature relationships, and compute a Pearson correlation matrix to identify potential multicollinearity.
+   Inspect class distribution, visualize feature distributions by diagnosis class, and compute a Pearson correlation matrix to identify potential multicollinearity among predictors.
 
-3. **Preprocessing**  
-   - Encode the diagnostic labels using `LabelEncoder`
-   - Standardize numerical features using `StandardScaler`
+3. **Train/Test Split**  
+   Partition the dataset into training and test sets (70/30) using stratified sampling to preserve class proportions.
 
-4. **Train–Test Split**  
-   Partition the dataset into training and test sets (80/20) using stratified sampling.
-
-5. **Model Training**  
-   Train two supervised classifiers:
-   - Logistic Regression  
+4. **Model Training**  
+   Train four supervised classifiers within a consistent pipeline (StandardScaler + SelectKBest + model):
+   - Logistic Regression
    - Support Vector Machine (RBF kernel)
+   - Linear Discriminant Analysis (LDA)
+   - K-Nearest Neighbors (KNN)
 
-6. **Cross-Validation**  
-   Apply **Stratified 5-Fold Cross-Validation** to evaluate model robustness.
+5. **Hyperparameter Tuning**  
+   Optimize model configurations using GridSearchCV with 5-fold stratified cross-validation, tuning both model hyperparameters and the number of selected features (SelectKBest).
 
-7. **Model Evaluation**  
-   Evaluate model performance on the test set using standard classification metrics and diagnostic curves.
+6. **Model Evaluation**  
+   Evaluate model performance on the test set using accuracy, precision, recall, F1-score, ROC-AUC, and Average Precision. Models are compared using ROC and Precision–Recall curves.
    
 ---
 ## Software and Libraries
@@ -115,21 +112,24 @@ The following Python libraries were used for data analysis, visualization, and m
 - **Pandas** – data manipulation and tabular data processing
 - **Matplotlib** – data visualization
 - **Seaborn** – statistical data visualization
-- **Scikit-learn** – machine learning algorithms and model evaluation
-
+- **Scikit-learn** – machine learning algorithms, model evaluation, and feature selection
+  - `Pipeline`, `StandardScaler`, `SelectKBest`
+  - `LogisticRegression`, `SVC`, `LinearDiscriminantAnalysis`, `KNeighborsClassifier`
+  - `GridSearchCV`, `train_test_split`, `StratifiedKFold`
+  - Metrics: `accuracy_score`, `f1_score`, `roc_auc_score`, `average_precision_score`, and more
 ---
 ## Model Performance Summary
 
 The predictive performance of the classifiers was evaluated on an independent test set using standard classification metrics.
 
 | Model | Accuracy | Precision | Recall | F1-score |
-|------|------|------|------|------|
+|-------|----------|-----------|--------|----------|
 | Logistic Regression | 0.977 | 0.984 | 0.953 | 0.968 |
-| SVM (RBF kernel) | 0.982 | 0.984 | 0.969 | 0.976 |
+| SVM (RBF kernel) | 0.994 | 1.000 | 0.984 | 0.992 |
+| LDA | 0.953 | 1.000 | 0.875 | 0.933 |
+| KNN | 0.959 | 0.983 | 0.906 | 0.943 |
 
-Logistic Regression was selected as a **baseline linear classifier**, providing interpretable probabilistic predictions. The Support Vector Machine with **RBF kernel** was included as a more flexible model capable of capturing **non-linear relationships among predictors**.
+All models achieved high predictive performance, with accuracy values above 0.95 and **ROC-AUC values close to 1**, indicating excellent separability between benign and malignant samples.
 
-Both models achieved very high predictive performance, with **ROC-AUC values close to 1**, indicating excellent separability between benign and malignant samples. The SVM model slightly improved recall for the malignant class, reducing the number of false negatives.
+**Logistic Regression** was selected as a baseline linear classifier, providing interpretable probabilistic predictions. **SVM with RBF kernel** achieved the best overall performance, with the highest F1-score (0.992) and perfect precision. **LDA** showed the lowest recall (0.875), indicating a higher tendency to miss some malignant cases at the default threshold. **KNN** achieved solid results, although with slightly lower recall compared to Logistic Regression and SVM.
 
----
-## References
