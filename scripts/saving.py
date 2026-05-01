@@ -37,5 +37,3 @@ def save_results(results, name, folder="results"):
     path = os.path.join(folder, f"{name}.csv")
 
     results.to_csv(path)
-
-    print(f"Saved: {path}")
