@@ -131,5 +131,5 @@ The predictive performance of the classifiers was evaluated on an independent te
 
 All models achieved high predictive performance, with accuracy values above 0.95 and **ROC-AUC values close to 1**, indicating excellent separability between benign and malignant samples.
 
-**Logistic Regression** was selected as a baseline linear classifier, providing interpretable probabilistic predictions. **SVM with RBF kernel** achieved the best overall performance, with the highest F1-score (0.992) and perfect precision. **LDA** showed the lowest recall (0.875), indicating a higher tendency to miss some malignant cases at the default threshold. **KNN** achieved solid results, although with slightly lower recall compared to Logistic Regression and SVM.
+**Logistic Regression** achieved strong and well-balanced results, with good precision and recall despite being the simplest model in the comparison. **SVM with RBF kernel** achieved the best overall performance, with the highest F1-score (0.992) and perfect precision. **LDA** showed the lowest recall (0.875), indicating a higher tendency to miss some malignant cases at the default threshold. **KNN** achieved solid results, although with slightly lower recall compared to Logistic Regression and SVM.
 
