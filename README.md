@@ -42,7 +42,8 @@ The repository is organized to keep data, code, results, and documentation clear
 ├── data/  
 │   ├── raw/  
 │   └── processed/  
-├── notebooks/  
+├── notebook/
+├── report/
 ├── plots/  
 ├── results/  
 ├── scripts/  
@@ -58,6 +59,9 @@ Contains the datasets used in the project.
 
 ### `notebook/`
 Jupyter notebook containing the full machine learning workflow, including exploratory analysis (EDA), preprocessing, model training, and evaluation.
+
+### `report/`
+PDF report of the project, including the explanation of methods, results, and discussion.
 
 ### `plots/`
 This directory contains all plots generated during the analysis.  
